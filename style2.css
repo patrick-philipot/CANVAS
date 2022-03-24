@@ -1,0 +1,24 @@
+body {
+  background-color: black;
+}
+#canvas1 {
+  position: absolute;
+  border: 3px solid white;
+  width: 800px;
+  height: 700px;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+}
+
+.controls {
+  position: absolute;
+  z-index: 10;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.controls, select, option {
+  font-size: 25px;
+}
