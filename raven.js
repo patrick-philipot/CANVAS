@@ -8,6 +8,7 @@ canvas.height = window.innerHeight;
 collisionCanvas.width = window.innerWidth;
 collisionCanvas.height = window.innerHeight;
 let score = 0;
+let gameOver = false;
 ctx.font = '50px Impact';
 
 let timeToNextRaven = 0;
@@ -50,6 +51,7 @@ class Raven {
       else this.frame++;
       this.timeSinceFlap = 0;
     } 
+    if (this.x < 0 - this.width) gameOver = true;
   }
   draw(){
     collisionCtx.fillStyle = this.color;
@@ -78,10 +80,12 @@ class Explosion {
     this.markedForDeletion = false;
   }
   update(deltaTime) {
+    //console.log(deltaTime);
     if (this.frame === 0) this.sound.play();
     this.timeSinceLastFrame += deltaTime;
     if (this.timeSinceLastFrame > this.frameInterval){
       this.frame++;
+      this.timeSinceLastFrame = 0;
       if (this.frame > this.maxFrame) this.markedForDeletion = true;
       // console.log("explosion frame", this.frame);
     }
@@ -101,6 +105,14 @@ function drawScore() {
   ctx.fillText('Score: ' + score, 55, 80);
 }
 
+function drawGameOver() {
+  ctx.textAlign = 'center';
+  ctx.fillStyle = 'black';
+  ctx.fillText('GAME OVER, your score is ' + score, canvas.width/2, canvas.height/2);
+  ctx.fillStyle = 'white';
+  ctx.fillText('GAME OVER, your score is ' + score, canvas.width/2 + 5, canvas.height/2 + 5);
+}
+
 window.addEventListener('click', function(e) {
   const detectPixelColor = collisionCtx.getImageData(e.x, e.y, 1, 1);
   const pc = detectPixelColor.data;
@@ -109,7 +121,7 @@ window.addEventListener('click', function(e) {
       object.markedForDeletion = true;
       score++;
       explosions.push(new Explosion(object.x, object.y, object.width));
-      console.log(explosions);
+      // console.log(explosions);
     }
   } );
 });
@@ -133,7 +145,8 @@ function animate(timestamp) {
   ravens = ravens.filter(object => !object.markedForDeletion)
   explosions = explosions.filter(object => !object.markedForDeletion)
 
-  requestAnimationFrame(animate)
+  if (!gameOver) requestAnimationFrame(animate);
+  else drawGameOver();
 }
 
 animate(0);
