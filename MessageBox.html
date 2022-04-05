@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Message Box</title>
+  <style>
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.btn{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: pink;
+  font-size: 20px;
+  color: white;
+  padding: 10px 30px;
+  cursor: pointer;
+}
+
+#popUpBox{
+  width: 500px;
+  overflow: hidden;
+  background: pink;
+  box-shadow: 0 0 10px black;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  padding: 10px;
+  text-align: center;
+  display: none;
+}
+
+  </style>
+</head>
+<body>
+  <body>
+    <div id="popUpOverlay"></div>
+    <div id="popUpBox">
+    <div id="box">
+    <i class="fas fa-check-circle fa-5x"></i>
+    <h1>Here Goes Your Popup</h1>
+    <div id="closeModal"></div>
+    </div>
+    </div>
+    <button onclick="Alert.render('You look very pretty today.')" class="btn">Show Alert</button>
+    <button onclick="doTest()">Test counter ^= 1</button>
+
+  <script>
+    var Alert = new CustomAlert();
+
+function CustomAlert(){
+  this.render = function(){
+      //Show Modal
+      let popUpBox = document.getElementById('popUpBox');
+      popUpBox.style.display = "block";
+      //Close Modal
+      document.getElementById('closeModal').innerHTML = '<button onclick="Alert.ok()">OK</button>';
+  }
+  
+this.ok = function(){
+  document.getElementById('popUpBox').style.display = "none";
+  document.getElementById('popUpOverlay').style.display = "none";
+}
+}
+
+  function doTest() {
+    var counter = 0;
+    console.log(counter);
+    counter ^= 1;
+    console.log(counter);
+    counter ^= 1;
+    console.log(counter);
+  }
+  </script>
+</body>
+</html>
