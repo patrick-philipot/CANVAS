@@ -9,7 +9,6 @@ collisionCanvas.width = window.innerWidth;
 collisionCanvas.height = window.innerHeight;
 let score = 0;
 let gameOver = false;
-var gameLimit = 5; // ne laisser passer que 5 corbeaux
 ctx.font = '50px Impact';
 
 let timeToNextRaven = 0;
@@ -18,6 +17,8 @@ let lastTime = 0;
 
 
 // ======================= ESSAI
+const secretScore = document.getElementById('score');
+var gameLimit = 5; // ne laisser passer que 5 corbeaux
 let gameSpeed = 3
 
 const backgroundLayer1 = new Image();
@@ -107,6 +108,7 @@ class Raven {
     if (this.x < 0 - this.width) {
       gameLimit--;
       gameOver = gameLimit < 1 ? true : false;
+      secretScore.value = score
     }
   }
   draw(){
@@ -210,3 +212,5 @@ function animate(timestamp) {
 }
 
 animate(0);
+
+const restartGame = () => { location.reload()};

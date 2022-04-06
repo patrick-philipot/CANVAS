@@ -25,3 +25,9 @@ h1 {
   top: 710px;
   text-align: center;
 }
+
+#secret {
+  visibility: hidden;
+  position: absolute;
+  top: 800px;
+}
