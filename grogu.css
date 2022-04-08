@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica';
+}
+
+.wrapper {
+  position:absolute;
+  border: 3px solid #010124;
+  width: 800px;
+  height:600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url('background2.png');
+  /*overflow: hidden;*/
+}
+
+.score {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /*border: 1px solid black;*/
+  width: 200px;
+  height: 100px;
+  font-size : 150px;
+  color: #010124;
+  text-align: center;
+} 
+
+.countdown {
+  position:relative;
+  top: 400px;
+  width: 100px;
+  font-size: 20px;
+  text-align: center;
+  color:#010124;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+}
+
+button {
+  position:absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background: #010124;
+  color: white;
+  padding: 20px 50px;
+  z-index: 2000;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.game {
+  border: 20px solid black;
+  width: 600px;
+  height: 400px;
+  margin: 70px auto;
+  z-index: 200; 
+  display: flex;
+}
+
+hole {
+  border: 3px solid red;
+  flex: 1 0 33.33%;
+}
